@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Predictions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .game {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .matchup {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .team {
+            text-align: center;
+            flex: 1;
+        }
+        .team img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+        .team-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .vs {
+            font-size: 24px;
+            font-weight: bold;
+            color: #666;
+            margin: 0 20px;
+        }
+        .prediction {
+            text-align: center;
+            font-size: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 4px;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <h1>NBA Game Predictions</h1>
+    
+    {% for game in games %}
+    <div class="game">
+        <div class="matchup">
+            <div class="team">
+                <img src="https://cdn.nba.com/logos/nba/{{ game.away_abbr }}/primary/L/logo.svg" 
+                     alt="{{ game.away_team }}"
+                     onerror="this.src='https://via.placeholder.com/100?text={{ game.away_abbr }}'">
+                <div class="team-name">{{ game.away_team }}</div>
+            </div>
+            
+            <div class="vs">@</div>
+            
+            <div class="team">
+                <img src="https://cdn.nba.com/logos/nba/{{ game.home_abbr }}/primary/L/logo.svg" 
+                     alt="{{ game.home_team }}"
+                     onerror="this.src='https://via.placeholder.com/100?text={{ game.home_abbr }}'">
+                <div class="team-name">{{ game.home_team }}</div>
+            </div>
+        </div>
+        
+        <div class="prediction">
+            Prediction: <strong>{{ game.prediction }}</strong>
+        </div>
+    </div>
+    {% endfor %}
+    
+</body>
+</html>
